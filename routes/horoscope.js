@@ -9,8 +9,35 @@ router.get('/', (req, res) => {
 
 router.get('/db', async function(req, res, next) {
     try {
-        const result = await db.query('SELECT * FROM horoscope ORDER BY id ASC');
-        res.render('horoscope', { horoscope: result.rows });
+        const { sign, month } = req.query;
+
+        let queryText = 'SELECT * FROM horoscope';
+        const queryParams = [];
+        const conditions = [];
+
+        if (sign) {
+            queryParams.push(sign);
+            conditions.push(`sign = $${queryParams.length}`);
+        }
+
+        if (month) {
+            queryParams.push(month);
+            conditions.push(`month = $${queryParams.length}`);
+        }
+
+        if (conditions.length > 0) {
+            queryText += ' WHERE ' + conditions.join(' AND ');
+        }
+
+        queryText += ' ORDER BY id ASC';
+
+        const result = await db.query(queryText, queryParams);
+        
+        res.render('horoscope', { 
+            horoscope: result.rows,
+            currentSign: sign,
+            currentMonth: month
+        });
     } catch (err) {
         console.error(err);
         res.status(400).send("Помилка бази даних");

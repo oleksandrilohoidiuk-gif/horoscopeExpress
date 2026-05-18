@@ -18,6 +18,67 @@ body {
     color: white;
     font-family:'Calibri', sans-serif;
 }
+.filter-container {
+    width: 1000px;
+    margin: 90px auto 20px auto; 
+    background: #0a0a1a;
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    border: 1px solid rgb(255, 255, 255);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.filter-select {
+    background: #0b0b1d;
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-size: 18px;
+    outline: none;
+    cursor: pointer;
+    font-family: 'Calibri', sans-serif;
+}
+
+.filter-select option {
+    background: #0a0a1a;
+}
+
+.filter-btn {
+    background: transparent;
+    color: #white;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 10px 25px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+ }
+
+.filter-btn:hover {
+   background: rgba(255, 255, 255, 0.1);
+}
+
+.filter-btn-reset {
+    background: transparent;
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 10px 25px;
+    font-size: 18px;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.filter-btn-reset:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
 
 table {
     width: 1000px;
@@ -111,6 +172,43 @@ table tr:hover {
 </style>
             </button>
             <div><a href="/" class="btn-back">🏠︎</a></div>
+            <form action="/db" method="GET" class="filter-container">
+        
+        <select name="sign" class="filter-select">
+            <option value="">Всі знаки</option>
+            <option value="Козоріг" {{#if (eq currentSign 'Козоріг')}}selected{{/if}}>Козоріг♑</option>
+            <option value="Водолій" {{#if (eq currentSign 'Водолій')}}selected{{/if}}>Водолій</option>
+            <option value="Риби" {{#if (eq currentSign 'Риби')}}selected{{/if}}>Риби♓</option>
+            <option value="Овен" {{#if (eq currentSign 'Овен')}}selected{{/if}}>Овен♈</option>
+            <option value="Телець" {{#if (eq currentSign 'Телець')}}selected{{/if}}>Телець♉</option>
+            <option value="Близнюки" {{#if (eq currentSign 'Близнюки')}}selected{{/if}}>Близнюки♊</option>
+            <option value="Рак" {{#if (eq currentSign 'Рак')}}selected{{/if}}>Рак♋</option>
+            <option value="Лев" {{#if (eq currentSign 'Лев')}}selected{{/if}}>Лев♌</option>
+            <option value="Діва" {{#if (eq currentSign 'Діва')}}selected{{/if}}>Діва♍</option>
+            <option value="Терези" {{#if (eq currentSign 'Терези')}}selected{{/if}}>Терези♎</option>
+            <option value="Скорпіон" {{#if (eq currentSign 'Скорпіон')}}selected{{/if}}>Скорпіон♏</option>
+            <option value="Стрілець" {{#if (eq currentSign 'Стрілець')}}selected{{/if}}>Стрілець♐</option>
+        </select>
+
+        <select name="month" class="filter-select">
+            <option value="">Всі місяці</option>
+            <option value="Січень" {{#if (eq currentMonth 'Січень')}}selected{{/if}}>Січень🎄</option>
+            <option value="Лютий" {{#if (eq currentMonth 'Лютий')}}selected{{/if}}>Лютий🏔️</option>
+            <option value="Березень" {{#if (eq currentMonth 'Березень')}}selected{{/if}}>Березень🌱</option>
+            <option value="Квітень" {{#if (eq currentMonth 'Квітень')}}selected{{/if}}>Квітень🌸</option>
+            <option value="Травень" {{#if (eq currentMonth 'Травень')}}selected{{/if}}>Травень🌿</option>
+            <option value="Червень" {{#if (eq currentMonth 'Червень')}}selected{{/if}}>Червень🌞</option>
+            <option value="Липень" {{#if (eq currentMonth 'Липень')}}selected{{/if}}>Липень🌊</option>
+            <option value="Серпень" {{#if (eq currentMonth 'Серпень')}}selected{{/if}}>Серпень🍉</option>
+            <option value="Вересень" {{#if (eq currentMonth 'Вересень')}}selected{{/if}}>Вересень☁️</option>
+            <option value="Жовтень" {{#if (eq currentMonth 'Жовтень')}}selected{{/if}}>Жовтень🎃</option>
+            <option value="Листопад" {{#if (eq currentMonth 'Листопад')}}selected{{/if}}>Листопад🍂</option>
+            <option value="Грудень" {{#if (eq currentMonth 'Грудень')}}selected{{/if}}>Грудень❄️</option>
+        </select>
+
+        <button type="submit" class="filter-btn">Фільтрувати</button>
+        <a href="/db" class="filter-btn-reset">Скинути</a>
+                </form>
                     <table>
                         <thead>
                             <tr>
