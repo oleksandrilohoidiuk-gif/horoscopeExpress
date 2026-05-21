@@ -7,7 +7,7 @@ router.get('/', (req, res) => {
   res.render('main');
 });
 
-router.get('/db', async function(req, res, next) {
+router.get('/db', async function(req, res) {
     try {
         const { sign, month } = req.query;
 
